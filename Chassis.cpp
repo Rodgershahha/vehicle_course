@@ -1,5 +1,4 @@
 #include "Chassis.h"
-#include "Lidar.h"
 #include <iostream>
 #include <fstream>
 
@@ -114,28 +113,4 @@ void Chassis::save(std::ofstream& outFile) const {
 	outFile << "最大行程: " << m_maxTravel << std::endl;
 	outFile << "轮胎信息:" << std::endl;
 	m_tires.save(outFile);
-}
-
-void Chassis::attachLidar(Lidar* l)
-{
-	m_lidar = l;
-	m_lidar->subscribe(this);
-}
-
-void Chassis::onObstacleStatusChange(ObstacleStatus status)
-{
-	switch (status) {
-	case OBSTACLE_FRONT:
-		std::cout << getId() << ": 障碍物在前方，后退\n";
-		break;
-	case OBSTACLE_LEFT_FRONT:
-		std::cout << getId() << ": 障碍物在左前方，右转\n";
-		break;
-	case OBSTACLE_RIGHT_FRONT:
-		std::cout << getId() << ": 障碍物在右前方，左转\n";
-		break;
-	default:
-		std::cout << getId() << ": 没有障碍物，继续前进\n";
-		break;
-	}
 }

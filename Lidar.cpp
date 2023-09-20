@@ -1,5 +1,4 @@
 #include "Lidar.h"
-#include "Chassis.h"
 #include <iostream>
 
 Lidar::Lidar() : m_model("RS-Helios-16p"), m_channels("16"),
@@ -33,23 +32,6 @@ void Lidar::save(std::ofstream& outFile) const {
 	outFile << "通道数: " << m_channels << std::endl;
 	outFile << "测试范围: " << m_range << std::endl;
 	outFile << "功耗: " << m_powerConsumption << std::endl;
-}
-
-void Lidar::subscribe(Chassis* chassis)
-{
-	m_subscribers.push_back(chassis);
-}
-void Lidar::updateObstacleStatus(ObstacleStatus status)
-{
-	m_obstacleStatus = status;
-	notifySubscribers();
-}
-
-void Lidar::notifySubscribers()
-{
-	for (Chassis* subscriber : m_subscribers) {
-		subscriber->onObstacleStatusChange(m_obstacleStatus);
-	}
 }
 
 std::string Lidar::getModel() const {

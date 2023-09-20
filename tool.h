@@ -4,7 +4,6 @@
 #include "SmartCar.h"
 #include "Student.h"
 
-
 // 从指定目录中读取智能小车信息文件并解析为SmartCar对象，存储在一个std::vector中并返回
 std::vector<SmartCar> readSmartCarsFromDirectory(const std::string& directoryPath);
 

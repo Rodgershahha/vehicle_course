@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.10.2)
-project(myProject)
+cmake_minimum_required(VERSION 3.12)
+project(YourProjectName)
 
 set(CMAKE_CXX_STANDARD 17)
 
 # 添加可执行文件
-add_executable(main
+add_executable(YourExecutableName
     main.cpp
     AGXKit.cpp
     AGXKit.h
@@ -28,7 +28,6 @@ add_executable(main
     Tire.h
     tool.cpp
     tool.h
-    ObstacleStatus.h
 )
 
 
