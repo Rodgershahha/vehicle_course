@@ -28,6 +28,7 @@ add_executable(main
     Tire.h
     tool.cpp
     tool.h
+    ObstacleStatus.h
 )
 
 
