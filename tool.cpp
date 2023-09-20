@@ -1,17 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 #include <vector>
 #include <string>
 #include <sstream>
 #include "SmartCar.h"
 #include "Student.h"
-
-#ifdef _WIN32
-#include <windows.h> // Windows headers
-#include <filesystem>
-#else
-#include <dirent.h>  // Linux headers
-#endif
 
 std::string generateRandomLetters(int length) {
 	// ¶¨Òå×ÖÄ¸±í
@@ -444,7 +438,6 @@ SmartCar parseSmartCarInfoFromFile(const std::string& filePath) {
 std::vector<SmartCar> readSmartCarsFromDirectory(const std::string& directoryPath) {
 	std::vector<SmartCar> cars;
 
-#ifdef _WIN32
 	for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
 		if (entry.is_regular_file()) {
 			std::string filePath = entry.path().string();
@@ -452,20 +445,6 @@ std::vector<SmartCar> readSmartCarsFromDirectory(const std::string& directoryPat
 			cars.push_back(car);
 		}
 	}
-#else
-	DIR* dir = opendir(directoryPath.c_str());
-	if (dir != nullptr) {
-		struct dirent* entry;
-		while ((entry = readdir(dir))) {
-			if (entry->d_type == DT_REG) {
-				std::string filePath = directoryPath + "/" + entry->d_name;
-				SmartCar car = parseSmartCarInfoFromFile(filePath);
-				cars.push_back(car);
-			}
-		}
-		closedir(dir);
-	}
-#endif
 
 	return cars;
 }

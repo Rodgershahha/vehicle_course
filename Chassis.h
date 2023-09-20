@@ -1,10 +1,7 @@
 #pragma once
 #include <string>
-#include <iostream>
 #include "Tire.h"
-#include "ObstacleStatus.h"
 
-class Lidar;
 class Chassis {
 public:
 	Chassis();
@@ -36,9 +33,6 @@ public:
 	void print() const;
 	void save(std::ofstream& outFile) const;
 
-	void attachLidar(Lidar* l);
-	void onObstacleStatusChange(ObstacleStatus status);
-
 private:
 	std::string m_id;
 	std::string m_model;
@@ -49,6 +43,5 @@ private:
 	std::string m_driveType;
 	std::string m_maxTravel;
 	Tire m_tires;
-	Lidar* m_lidar;
 };
 
