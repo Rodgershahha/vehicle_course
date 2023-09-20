@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.12)
-project(YourProjectName)
+cmake_minimum_required(VERSION 3.10.2)
+project(myProject)
 
 set(CMAKE_CXX_STANDARD 17)
 
 # 添加可执行文件
-add_executable(YourExecutableName
+add_executable(main
     main.cpp
     AGXKit.cpp
     AGXKit.h
